@@ -34,4 +34,4 @@ build/
 
 
 # macOS metadata files
-.DS_Store
+src/.DS_Store
