@@ -5,7 +5,7 @@ import com.api.csis3275_backend.entities.Tour;
 import com.api.csis3275_backend.repositories.AdminRepository;
 import com.api.csis3275_backend.repositories.TourRepository;
 import com.api.csis3275_backend.service.TourService;
-//import com.api.csis3275_backend.repositories.TravelBuddyRepository;
+import com.api.csis3275_backend.repositories.TravelBuddyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class AdminController {
     @Autowired
     AdminRepository adminRepository;
     TourRepository tourRepository;
-//    TravelBuddyRepository travelBuddyRepository;
+    TravelBuddyRepository travelBuddyRepository;
     TourService tourService;
 
     @GetMapping("/api/admin")
