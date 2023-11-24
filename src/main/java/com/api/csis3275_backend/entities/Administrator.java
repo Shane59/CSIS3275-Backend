@@ -7,22 +7,20 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 
 @Entity
+@Getter
 public class Administrator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private int adminID;
-    @Getter
     private String username;
-    @Getter
     private String password;
 
     public Administrator() {}
     public Administrator(int adminID, String username, String password) {
-        adminID = adminID;
-        username = username;
-        password = password;
+        this.adminID = adminID;
+        this.username = username;
+        this.password = password;
     }
 
     public void setAdminId(int adminID) {
