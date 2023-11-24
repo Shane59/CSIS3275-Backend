@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 
 import java.sql.Date;
+import java.sql.Time;
 
 @Getter
 @Entity
@@ -16,17 +17,19 @@ public class Booking {
     private int tourID;
     private Date bookingDate;
     private String imageURL;
+    private Time startTime;
 
     public Booking() {
     }
 
-    public Booking(int bookingID, int touristID, int travelBuddyID, int tourID, Date bookingDate, String imageURL) {
+    public Booking(int bookingID, int touristID, int travelBuddyID, int tourID, Date bookingDate, String imageURL, Time startTime) {
         this.bookingID = bookingID;
         this.touristID = touristID;
         this.travelBuddyID = travelBuddyID;
         this.tourID = tourID;
         this.bookingDate = bookingDate;
         this.imageURL = imageURL;
+        this.startTime = startTime;
     }
 
     public void setBookingID(int bookingID) {
@@ -51,6 +54,9 @@ public class Booking {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
     }
 
 }

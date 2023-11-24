@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Time;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,8 @@ public class BookingController {
     BookingService bookingService;
 
     @GetMapping("/api/booking")
-    public List<Booking> booking(Model model, @RequestParam(name="travelBuddyID", defaultValue = "") String travelBuddyID,
+    public List<Booking> booking(Model model,
+                                 @RequestParam(name="travelBuddyID", defaultValue = "") String travelBuddyID,
                                  @RequestParam(name = "touristID", defaultValue = "") String touristID) {
         if (travelBuddyID.isEmpty() && touristID.isEmpty()) {
             return bookingRepository.findAll();
@@ -40,11 +42,13 @@ public class BookingController {
 
 
     @PostMapping("/api/booking/create")
-    public ResponseEntity<Booking> createBooking(@RequestParam(name = "touristID") int touristID,
-                                                @RequestParam(name = "travelBuddyID") int travelBuddyID,
-                                                @RequestParam(name = "tourID") int tourID) {
+    public ResponseEntity<Booking> createBooking(
+            @RequestParam(name = "touristID") int touristID,
+            @RequestParam(name = "travelBuddyID") int travelBuddyID,
+            @RequestParam(name = "tourID") int tourID,
+            @RequestParam(name = "startTime") Time startTime) {
 
-        Booking newBooking = bookingService.createNewBooking(touristID, travelBuddyID, tourID);
+        Booking newBooking = bookingService.createNewBooking(touristID, travelBuddyID, tourID, startTime);
         return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
     }
 }

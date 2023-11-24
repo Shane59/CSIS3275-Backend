@@ -4,16 +4,18 @@ import com.api.csis3275_backend.entities.Booking;
 import com.api.csis3275_backend.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Time;
 import java.util.Date;
 
 @Service
 public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
-    public Booking createNewBooking(int touristID, int travelBuddyID, int tourID) {
+    public Booking createNewBooking(int touristID, int travelBuddyID, int tourID, Time startTime) {
         int latestId = bookingRepository.findLatestBookingId();
         Date currentDate = new Date();
-        Booking newBooking = new Booking(latestId + 1, touristID, travelBuddyID, tourID, new java.sql.Date(currentDate.getTime()), "");
+        Booking newBooking = new Booking(latestId + 1, touristID, travelBuddyID, tourID, new java.sql.Date(currentDate.getTime()), "", startTime);
         bookingRepository.save(newBooking);
         return newBooking;
     }
