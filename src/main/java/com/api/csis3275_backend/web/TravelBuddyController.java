@@ -26,7 +26,6 @@ public class TravelBuddyController {
      }
 
 
-
     @GetMapping(path = "/api/travelBuddy/{travelBuddyID}")
     public Optional<TravelBuddy> displayTravelBuddy(@PathVariable int travelBuddyID) {
 
@@ -61,5 +60,4 @@ public class TravelBuddyController {
 
         return new ResponseEntity<>(travelBuddyID, HttpStatus.OK);
     }
-
 }
