@@ -13,7 +13,12 @@ public interface TravelBuddyRepository extends JpaRepository<TravelBuddy, Long> 
     List<TravelBuddy> findByApplicationStatus(String applicationStatus);
 
     @Query(value = "SELECT * FROM TravelBuddy  WHERE travelBuddyID = :travelBuddyID", nativeQuery = true)
-    Optional<TravelBuddy> findByTravelBuddyID(int travelBuddyID);
+    List<TravelBuddy> findByTravelBuddyID(int travelBuddyID);
+
+    @Query(value = "SELECT DISTINCT t.travelBuddyID, t.firstName, t.lastName," +
+            "t.email, t.description, t.username, t.password, t.resumeURL, t.profileImageURL," +
+            "t.applicationStatus, t.averageStarRate FROM availability a, travelbuddy t where t.travelbuddyid=a.travelbuddyId", nativeQuery = true)
+    List<TravelBuddy> findByTourID(int tourID);
 
     @Override
     TravelBuddy save(TravelBuddy travelBuddy);

@@ -26,11 +26,21 @@ public class TravelBuddyController {
      }
 
 
-    @GetMapping(path = "/api/travelBuddy/{travelBuddyID}")
-    public Optional<TravelBuddy> displayTravelBuddy(@PathVariable int travelBuddyID) {
+    @GetMapping(path = "/api/travelBuddy")
+    public List<TravelBuddy> displayTravelBuddy(
+            @RequestParam(name = "travelBuddyID", defaultValue = "") String travelBuddyID,
+            @RequestParam(name = "tourID", defaultValue = "") String tourID) {
+        if (!travelBuddyID.isEmpty()) {
+            int key = Integer.parseInt(travelBuddyID);
+            return travelBuddyRepository.findByTravelBuddyID(key);
+        }
+        int key = Integer.parseInt(tourID);
+        return travelBuddyRepository.findByTourID(key);
+    }
 
-         return travelBuddyRepository.findByTravelBuddyID(travelBuddyID);
-
+    @GetMapping(path = "/api/travelBuddy/{tourID}")
+    public List<TravelBuddy> getTravelBuddyByTourId(@PathVariable int tourID) {
+        return travelBuddyRepository.findByTourID(tourID);
     }
 
     @GetMapping(path = "/api/admin/travelBuddies/{applicationStatus}")
