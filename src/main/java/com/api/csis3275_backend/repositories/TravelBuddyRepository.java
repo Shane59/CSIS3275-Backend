@@ -1,5 +1,6 @@
 package com.api.csis3275_backend.repositories;
 
+import com.api.csis3275_backend.entities.Administrator;
 import com.api.csis3275_backend.entities.TravelBuddy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,8 @@ public interface TravelBuddyRepository extends JpaRepository<TravelBuddy, Long> 
             "t.applicationStatus, t.averageStarRate FROM availability a, travelbuddy t where t.travelbuddyid=a.travelbuddyId", nativeQuery = true)
     List<TravelBuddy> findByTourID(int tourID);
 
+    @Query(value = "SELECT * FROM TravelBuddy WHERE username = :username", nativeQuery = true)
+    Optional<TravelBuddy> findByUsername(String username);
     @Override
     TravelBuddy save(TravelBuddy travelBuddy);
 }
